@@ -1,0 +1,19 @@
+#map{
+  height:400px;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+#header{
+  font-size: 64px;
+  color: black;
+  margin-bottom: 50px;
+  text-align: center;
+}
+#leftText{
+  text-align:left;
+  max-width: 50px;
+}
+body{
+  background-color: gray;
+}
