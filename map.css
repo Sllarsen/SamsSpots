@@ -1,0 +1,13 @@
+#map{
+  height:100px;
+  width: 50%;
+  padding-right: 25%;
+  margin-right: 25%;
+}
+#header{
+  font-size: 64px;
+  color: black;
+  margin-bottom: 50px;
+  text-align: center;
+
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sam's Spots</title>
+  <link rel="stylesheet" type="text/css" href="map.css">
+</head>
+<body id = "body">
+  <h3 id = "header">The Spots</h3>
+
+  <div id="map"></div>
+
+
+
+  <script>
+  function initMap() {
+    var currentWindow = null;
+    var blacksburg =   {lat: 37.2328671, lng: -80.4139};
+    var settings = { //settings
+      zoom: 7, //how far the map is zoomed initally
+      center: blacksburg //where it starts, currently-blacksburg
+    }
+
+    //new map made
+    var map = new google.maps.Map(document.getElementById('map'), settings);
+    //adds markers to the map
+    function makeMarker(additions)
+    {
+      var newMarker = new google.maps.Marker({
+        position: additions.coordinate,
+        map: map
+      });
+      if(additions.content)
+      {
+        var info = new google.maps.InfoWindow({
+          content: additions.content
+        });
+        newMarker.addListener('click', function() {
+          if(currentWindow != null){
+            currentWindow.close();
+          }
+          currentWindow = info;
+          info.open(map, newMarker);
+        });
+      }
+    }
+
+    //The spots on the map
+    var listMarkers = [
+      {
+        //https://cdn3.iconfinder.com/data/icons/map-markers-1/512/fishing-512.png
+        coordinate:{lat: 37.2296, lng: -80.5237115},
+        content:'<img src = https://i.ytimg.com/vi/7q1HwyNQtOM/maxresdefault.jpg width = 200px; height = 150px;><h1>Poverty Creek</h1><a href="https://www.google.com/maps/dir//37.2296,+-80.5237115/@37.2293176,-80.5251335,17z/data=!3m1!4b1!4m6!4m5!1m0!1m3!2m2!1d-80.5237115!2d37.2296"target="_blank">Take me there!</a>'
+        //poverty creek
+      },
+      {
+        coordinate:{lat: 38.2443673, lng: -77.2257355},
+        content:'<img src = http://4cguuj42x0p9953lzqbuto5x-wpengine.netdna-ssl.com/wp-content/uploads/2013/03/photo31.jpg width = 200px; height = 150px;><h1>HopeYard Boat Ramp</h1><p>Nice dock and easy access boat ramp</p><a href="https://www.google.com/maps/dir//Hopyard+Landing,+Hop+Yard+Farm+Cir,+King+George,+VA+22485/@38.2443621,-77.2607548,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89b6df09b662bd7b:0x6bdca56a7f3c915b!2m2!1d-77.2257355!2d38.2443673"target="_blank">Take me there! </a>'
+        //hopeyard dock
+      },
+      {
+        coordinate:{lat: 38.1559679, lng: -77.0712479},
+        content:'<img src = https://i.pinimg.com/236x/c1/05/84/c10584cd1efb039515e854765d6bdf48--fiumi-water-animals.jpg width = 200px; height = 150px;><h1>Wilmont Landing</h1><p>Nice place to put in a boat</p><a href="https://www.google.com/maps/dir//Wilmont+Rd,+King+George,+VA+22485/@38.1690317,-77.0731436,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x89b72468eb98b027:0xb9f93f18cd80d24a!2m2!1d-77.0709549!2d38.1690317"target="_blank">Take me there! </a>'
+        //Wilmont
+      },
+      {
+        coordinate:{lat: 37.9200, lng: -76.8571},
+
+        content:'<img src = https://upload.wikimedia.org/wikipedia/commons/6/6b/Hoskins_Creek_on_the_Rappahannock_River_at_Tappahannock%2C_Virginia_-_panoramio.jpg width = 200px; height = 150px;><h1>Hoskins Creek</h1><p>A prime place to catch croaker</p><a href="https://www.google.com/maps/dir//37.92,-76.8571/@38.1242502,-77.4372583,10z" target="_blank">Take me there!</a>'
+
+        //Hotskins
+      },
+
+      {
+        coordinate:{lat: 38.2968183, lng: -77.4535247},
+        content:'<img src = https://www.fredericksburgva.gov/ImageRepository/Path?filePath=%2Fdocuments%5C00000000-0000-0000-0000-000000000000%2FCityDock2_201305150712211994.jpg&thumbnailSize=Thumb400X400&preserveAspect=true width = 200px; height = 150px;><h1>City Dock</h1><p> A great place to catch shad</p><a href="https://www.google.com/maps/dir//38.2968183,-77.4535247/@38.3128642,-77.4639393,14z" target="_blank">Take me there!</a>'
+        //city Dock
+      },
+      {
+        coordinate:{lat: 37.265944, lng: -80.601111},
+        content:'<img src = http://cavingnews.com/assets/uploads/2014/03/Winter-Forest-Room.jpg width = 200px; height = 150px;><h1>New River Cave</h1><a href="https://www.google.com/maps/dir//37.265944,+-80.6011111/@37.265948,-80.6031513,17z/data=!4m6!4m5!1m0!1m3!2m2!1d-80.6011111!2d37.265944" target="_blank">Take me there!</a>'
+        //New River Cave
+      },
+      {
+        coordinate:{lat: 37.226019, lng:  -80.428051},
+        content:'<img src = https://upload.wikimedia.org/wikipedia/commons/e/ea/Duckpond_Virginia_Tech.JPG width = 200px; height = 150px;><h1>Duck Pond</h1><a href="https://www.google.com/maps/dir//+37.226019,+++-80.428051/@37.2261949,-80.4362316,17z/data=!4m6!4m5!1m0!1m3!2m2!1d-80.428051!2d37.226019" target="_blank">Take me there!</a>'
+        //Duck Pond
+      },
+      {
+        coordinate:{lat: 37.281647, lng:  -80.468212},
+        content:'<img src = https://i.pinimg.com/originals/dc/4b/34/dc4b342aadf0647cd3a63a9a66b6eb4e.jpg width = 200px; height = 150px;><h1>Pandapas Pond</h1><a href="https://www.google.com/maps/dir//37.281647,+++-80.468212/@37.2811943,-80.5036517,13z/data=!4m6!4m5!1m0!1m3!2m2!1d-80.468212!2d37.281647" target="_blank">Take me there!</a>'
+        //Pandapas Pond
+      }
+    ];
+    //A for loop to add the markers to the map
+    for( var i = 0; i < listMarkers.length; i++)
+    {
+      makeMarker(listMarkers[i]);
+    }
+
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiYKudAYwMWXKy5fXcKZxfKryCWIKxqe4&callback=initMap">
+</script>
+
+<h3>The end</h3>
+</body>
+</html>
